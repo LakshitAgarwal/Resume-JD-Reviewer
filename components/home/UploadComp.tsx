@@ -31,10 +31,7 @@ export default function UploadComp() {
       if (jobDescriptionFile)
         formData.append("jobDescriptionFile", jobDescriptionFile);
 
-      const res = await axios.post(
-        "/api/getData",
-        formData
-      );
+      const res = await axios.post("/api/getData", formData);
       setResult(res.data.data);
     } catch (error) {
       console.error("Error:", error);
@@ -118,11 +115,11 @@ export default function UploadComp() {
                   !resume ||
                   (!jobDescriptionText && !jobDescriptionFile)
                 }
-                className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700  text-white font-semibold py-4 px-12 rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105 disabled:scale-100 disabled:cursor-not-allowed"
+                className="bg-gradient-to-r from-blue-600 cursor-pointer to-indigo-600 hover:from-blue-700 hover:to-indigo-700  text-white font-semibold py-4 px-12 rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105 disabled:scale-100 disabled:cursor-not-allowed"
               >
                 {isLoading ? (
                   <div className="flex items-center space-x-2">
-                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    <div className="w-5 h-5 border-2 cursor-pointer border-white border-t-transparent rounded-full animate-spin"></div>
                     <span>Analyzing...</span>
                   </div>
                 ) : (
