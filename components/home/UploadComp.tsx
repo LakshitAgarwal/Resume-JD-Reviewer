@@ -32,7 +32,7 @@ export default function UploadComp() {
         formData.append("jobDescriptionFile", jobDescriptionFile);
 
       const res = await axios.post(
-        "http://localhost:3000/api/getData",
+        "/api/getData",
         formData
       );
       setResult(res.data.data);
