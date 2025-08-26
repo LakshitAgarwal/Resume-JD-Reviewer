@@ -2,6 +2,7 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import PDFParser from "pdf2json";
+import mammoth from "mammoth";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { prompt } from "@/lib/constants";
 
@@ -39,6 +40,31 @@ async function getPDFText(file: File): Promise<string> {
   });
 }
 
+async function getDOCXText(file: File): Promise<string> {
+  try {
+    const arrayBuffer = await file.arrayBuffer();
+    const buffer = Buffer.from(arrayBuffer);
+    const result = await mammoth.extractRawText({ buffer });
+    return result.value;
+  } catch (error) {
+    throw new Error(`Failed to parse DOCX file: ${(error as Error).message}`);
+  }
+}
+
+async function parseFileText(file: File): Promise<string> {
+  const fileName = file.name.toLowerCase();
+
+  if (fileName.endsWith(".pdf")) {
+    return await getPDFText(file);
+  } else if (fileName.endsWith(".docx") || fileName.endsWith(".doc")) {
+    return await getDOCXText(file);
+  } else {
+    throw new Error(
+      `Unsupported file type. Please upload PDF or DOCX files only.`
+    );
+  }
+}
+
 export async function POST(req: NextRequest) {
   try {
     const formData = await req.formData();
@@ -46,10 +72,11 @@ export async function POST(req: NextRequest) {
     const jobDescriptionText = formData.get("jobDescriptionText") as string;
     const jobDescriptionFile = formData.get("jobDescriptionFile");
 
-    const resumeText = resume instanceof File ? await getPDFText(resume) : "";
+    const resumeText =
+      resume instanceof File ? await parseFileText(resume) : "";
     const jdText =
       jobDescriptionFile instanceof File
-        ? await getPDFText(jobDescriptionFile)
+        ? await parseFileText(jobDescriptionFile)
         : jobDescriptionText || "";
 
     const model = genAI.getGenerativeModel({
