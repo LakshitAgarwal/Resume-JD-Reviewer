@@ -19,8 +19,8 @@ export default function HeroSection() {
             </span>
           </span>
         </div>
-        <h2 className="text-5xl mt-10 md:text-6xl font-bold bg-gradient-to-r from-gray-900 via-blue-900 to-indigo-900 bg-clip-text text-transparent mb-6">
-          Match Your Resume To Any JD, Instantly
+        <h2 className="text-5xl mt-10 md:text-6xl py-2 font-bold bg-gradient-to-r from-gray-900 via-blue-900 to-indigo-900 bg-clip-text text-transparent mb-6">
+          Match Your Resume To Any JD
         </h2>
         <p className="text-xl text-gray-600 mb-8 leading-relaxed">
           Upload your resume and a job description. We score the match,
