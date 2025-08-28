@@ -162,7 +162,11 @@ export default function MultiStepResumeBuilder() {
         </div>
 
         {/* Progress Indicator */}
-        <ProgressIndicator currentStep={currentStep} steps={steps} />
+        <ProgressIndicator
+          currentStep={currentStep}
+          steps={steps}
+          goToStep={goToStep}
+        />
 
         {/* Main Content */}
         <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl border border-white/20 p-10 mb-10">

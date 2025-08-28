@@ -11,11 +11,13 @@ interface Step {
 interface ProgressIndicatorProps {
   currentStep: number;
   steps: Step[];
+  goToStep?: (step: number) => void;
 }
 
 export default function ProgressIndicator({
   currentStep,
   steps,
+  goToStep,
 }: ProgressIndicatorProps) {
   return (
     <div className="w-full max-w-6xl mx-auto mb-12">
@@ -40,7 +42,12 @@ export default function ProgressIndicator({
               {/* Step Circle */}
               <div className="relative z-10">
                 {currentStep > step.id ? (
-                  <div className="w-12 h-12 bg-gradient-to-r from-emerald-500 to-green-500 rounded-full flex items-center justify-center shadow-lg transform transition-all duration-300 group-hover:scale-110">
+                  <div
+                    className={`w-12 h-12 bg-gradient-to-r from-emerald-500 to-green-500 rounded-full flex items-center justify-center shadow-lg transform transition-all duration-300 group-hover:scale-110 ${
+                      goToStep ? "cursor-pointer" : ""
+                    }`}
+                    onClick={() => goToStep?.(step.id)}
+                  >
                     <CheckCircle className="w-6 h-6 text-white" />
                   </div>
                 ) : currentStep === step.id ? (
