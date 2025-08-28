@@ -20,20 +20,29 @@ export default function BasicInfo() {
     schoolStartDate: "",
     schoolEndDate: "",
     schoolLocation: "",
-    companyName: "",
-    position: "",
-    jobStartDate: "",
-    jobEndDate: "",
-    description: "",
-    technologiesUsed: "",
-    location: "",
-    projectName: "",
-    projectDescription: "",
-    projectTechnologiesUsed: "",
-    projectLink: "",
-    projectGithubLink: "",
-    projectStartDate: "",
-    projectEndDate: "",
+    experiences: [
+      {
+        companyName: "",
+        position: "",
+        jobStartDate: "",
+        jobEndDate: "",
+        description: "",
+        technologiesUsed: "",
+        location: "",
+      },
+    ],
+
+    projects: [
+      {
+        projectName: "",
+        projectDescription: "",
+        projectTechnologiesUsed: "",
+        projectLink: "",
+        projectGithubLink: "",
+        projectStartDate: "",
+        projectEndDate: "",
+      },
+    ],
     skills: "",
   });
 
@@ -45,6 +54,71 @@ export default function BasicInfo() {
     setFormData({
       ...formData,
       [name]: value,
+    });
+  };
+
+  const handleExpChange = (
+    i: number,
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const { name, value } = e.target;
+    /**
+     * name comes from the <input name="companyName" /> etc.
+     * value is whatever user typed.
+     */
+
+    const updated = [...formData.experiences];
+    // @ts-expect-error: name matches keys of the object
+    updated[i][name] = value;
+    setFormData({
+      ...formData,
+      experiences: updated,
+    });
+  };
+
+  const handleProjChange = (
+    i: number,
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const { name, value } = e.target;
+    const updated = [...formData.projects];
+    // @ts-expect-error: name matches keys of the object
+    updated[i][name] = value;
+    setFormData({
+      ...formData,
+      projects: updated,
+    });
+  };
+
+  const addNewExperience = () => {
+    const newExp = {
+      companyName: "",
+      position: "",
+      jobStartDate: "",
+      jobEndDate: "",
+      description: "",
+      technologiesUsed: "",
+      location: "",
+    };
+    setFormData({
+      ...formData,
+      experiences: [...formData.experiences, newExp],
+    });
+  };
+
+  const addNewProject = () => {
+    const newProj = {
+      projectName: "",
+      projectDescription: "",
+      projectTechnologiesUsed: "",
+      projectLink: "",
+      projectGithubLink: "",
+      projectStartDate: "",
+      projectEndDate: "",
+    };
+    setFormData({
+      ...formData,
+      projects: [...formData.projects, newProj],
     });
   };
 
@@ -72,7 +146,7 @@ export default function BasicInfo() {
     <div>
       <h1>Resume Builder</h1>
       <form action="" onSubmit={handleSubmit}>
-        {/* Section 1 */}
+        {/* personal info */}
         <h1>Personal Information</h1>
         <div>
           <div>
@@ -104,7 +178,7 @@ export default function BasicInfo() {
           </div>
         </div>
 
-        {/* Section 2 */}
+        {/* education */}
         <h1>Education</h1>
         <div>
           {/* college */}
@@ -201,117 +275,125 @@ export default function BasicInfo() {
 
         {/* Experience */}
         <h1>Experience</h1>
-        <div>
-          <div>
-            <p>Company Name: </p>
-            <input
-              type="text"
-              name="companyName"
-              value={formData.companyName}
-              onChange={handleChange}
-            />
+        {formData.experiences.map((exp, i) => (
+          <div key={i}>
+            <div>
+              <p>Company Name: </p>
+              <input
+                type="text"
+                name="companyName"
+                value={exp.companyName}
+                onChange={(e) => handleExpChange(i, e)}
+              />
+            </div>
+            <div>
+              <p>Position: </p>
+              <input
+                type="text"
+                name="position"
+                value={exp.position}
+                onChange={(e) => handleExpChange(i, e)}
+              />
+              <p>Start Date: </p>
+              <input
+                type="date"
+                name="jobStartDate"
+                value={exp.jobStartDate}
+                onChange={(e) => handleExpChange(i, e)}
+              />
+              <p>End Date: </p>
+              <input
+                type="date"
+                name="jobEndDate"
+                value={exp.jobEndDate}
+                onChange={(e) => handleExpChange(i, e)}
+              />
+              <p>Description: </p>
+              <input
+                type="text"
+                name="description"
+                value={exp.description}
+                onChange={(e) => handleExpChange(i, e)}
+              />
+              <p>Technologies Used: </p>
+              <input
+                type="text"
+                name="technologiesUsed"
+                value={exp.technologiesUsed}
+                onChange={(e) => handleExpChange(i, e)}
+              />
+              <p>Location: </p>
+              <input
+                type="text"
+                name="location"
+                value={exp.location}
+                onChange={(e) => handleExpChange(i, e)}
+              />
+            </div>
           </div>
-          <div>
-            <p>Position: </p>
-            <input
-              type="text"
-              name="position"
-              value={formData.position}
-              onChange={handleChange}
-            />
-            <p>Start Date: </p>
-            <input
-              type="date"
-              name="jobStartDate"
-              value={formData.jobStartDate}
-              onChange={handleChange}
-            />
-            <p>End Date: </p>
-            <input
-              type="date"
-              name="jobEndDate"
-              value={formData.jobEndDate}
-              onChange={handleChange}
-            />
-            <p>Description: </p>
-            <input
-              type="text"
-              name="description"
-              value={formData.description}
-              onChange={handleChange}
-            />
-            <p>Technologies Used: </p>
-            <input
-              type="text"
-              name="technologiesUsed"
-              value={formData.technologiesUsed}
-              onChange={handleChange}
-            />
-            <p>Location: </p>
-            <input
-              type="text"
-              name="location"
-              value={formData.location}
-              onChange={handleChange}
-            />
-          </div>
-        </div>
+        ))}
+
+        <button onClick={addNewExperience}>Add New Experience</button>
 
         {/* Projects */}
         <h1>Projects</h1>
-        <div>
-          <div>
-            <p>Project Name: </p>
-            <input
-              type="text"
-              name="projectName"
-              value={formData.projectName}
-              onChange={handleChange}
-            />
-            <p>Description: </p>
-            <input
-              type="text"
-              name="projectDescription"
-              value={formData.projectDescription}
-              onChange={handleChange}
-            />
-            <p>Technologies Used: </p>
-            <input
-              type="text"
-              name="projectTechnologiesUsed"
-              value={formData.projectTechnologiesUsed}
-              onChange={handleChange}
-            />
-            <p>Link: </p>
-            <input
-              type="text"
-              name="projectLink"
-              value={formData.projectLink}
-              onChange={handleChange}
-            />
-            <p>Github Link: </p>
-            <input
-              type="text"
-              name="projectGithubLink"
-              value={formData.projectGithubLink}
-              onChange={handleChange}
-            />
-            <p>Start Date: </p>
-            <input
-              type="date"
-              name="projectStartDate"
-              value={formData.projectStartDate}
-              onChange={handleChange}
-            />
-            <p>End Date: </p>
-            <input
-              type="date"
-              name="projectEndDate"
-              value={formData.projectEndDate}
-              onChange={handleChange}
-            />
+        {formData.projects.map((proj, i) => (
+          <div key={i}>
+            <div>
+              <p>Project Name: </p>
+              <input
+                type="text"
+                name="projectName"
+                value={proj.projectName}
+                onChange={(e) => handleProjChange(i, e)}
+              />
+              <p>Description: </p>
+              <input
+                type="text"
+                name="projectDescription"
+                value={proj.projectDescription}
+                onChange={(e) => handleProjChange(i, e)}
+              />
+              <p>Technologies Used: </p>
+              <input
+                type="text"
+                name="projectTechnologiesUsed"
+                value={proj.projectTechnologiesUsed}
+                onChange={(e) => handleProjChange(i, e)}
+              />
+              <p>Link: </p>
+              <input
+                type="text"
+                name="projectLink"
+                value={proj.projectLink}
+                onChange={(e) => handleProjChange(i, e)}
+              />
+              <p>Github Link: </p>
+              <input
+                type="text"
+                name="projectGithubLink"
+                value={proj.projectGithubLink}
+                onChange={(e) => handleProjChange(i, e)}
+              />
+              <p>Start Date: </p>
+              <input
+                type="date"
+                name="projectStartDate"
+                value={proj.projectStartDate}
+                onChange={(e) => handleProjChange(i, e)}
+              />
+              <p>End Date: </p>
+              <input
+                type="date"
+                name="projectEndDate"
+                value={proj.projectEndDate}
+                onChange={(e) => handleProjChange(i, e)}
+              />
+            </div>
           </div>
-        </div>
+        ))}
+
+        <button onClick={addNewProject}>Add New Project</button>
 
         {/* Skills */}
         <h1>Skills</h1>
