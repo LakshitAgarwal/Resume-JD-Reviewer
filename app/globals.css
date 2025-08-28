@@ -87,3 +87,15 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
 }
+
+/* Global input text styling */
+input,
+textarea {
+  color: rgb(30 41 59) !important; /* text-slate-800 */
+}
+
+/* Ensure input text is visible in all browsers */
+input::placeholder,
+textarea::placeholder {
+  color: rgb(148 163 184) !important; /* text-slate-400 */
+}

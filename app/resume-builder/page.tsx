@@ -1,9 +1,9 @@
-import BasicInfo from "@/components/resumeBuilder/BasicInfo";
+import MultiStepResumeBuilder from "@/components/resumeBuilder/MultiStepResumeBuilder";
 
 export default function ResumeBuilder() {
   return (
     <div>
-      <BasicInfo />
+      <MultiStepResumeBuilder />
     </div>
   );
 }
