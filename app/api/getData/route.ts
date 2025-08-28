@@ -3,10 +3,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import PDFParser from "pdf2json";
 import mammoth from "mammoth";
-import { GoogleGenerativeAI } from "@google/generative-ai";
 import { prompt } from "@/lib/constants";
-
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
+import { model } from "@/lib/geminiInitialisation";
 
 async function getPDFText(file: File): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -79,9 +77,6 @@ export async function POST(req: NextRequest) {
         ? await parseFileText(jobDescriptionFile)
         : jobDescriptionText || "";
 
-    const model = genAI.getGenerativeModel({
-      model: "gemini-2.0-flash",
-    });
     const result = await model.generateContent(prompt(resumeText, jdText));
     const response = result.response;
     const responseText = response.text();
