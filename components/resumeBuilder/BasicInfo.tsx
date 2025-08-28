@@ -44,6 +44,11 @@ export default function BasicInfo() {
       },
     ],
     skills: "",
+    githubProfile: "",
+    linkedinProfile: "",
+    leetcodeProfile: "",
+    achivements: [{ achivement: "" }],
+    extraCurricular: [{ extraCurricular: "" }],
   });
 
   const [latexCode, setLatexCode] = useState("");
@@ -90,6 +95,33 @@ export default function BasicInfo() {
     });
   };
 
+  const handleAchivementChange = (
+    i: number,
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const { name, value } = e.target;
+    const updated = [...formData.achivements];
+    // @ts-expect-error: name matches keys of the object
+    updated[i][name] = value;
+    setFormData({
+      ...formData,
+      achivements: updated,
+    });
+  };
+
+  const handleExtraCurricularChange = (
+    i: number,
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const { name, value } = e.target;
+    const updated = [...formData.extraCurricular];
+    // @ts-expect-error: name matches keys of the object
+    updated[i][name] = value;
+    setFormData({
+      ...formData,
+      extraCurricular: updated,
+    });
+  };
   const addNewExperience = () => {
     const newExp = {
       companyName: "",
@@ -119,6 +151,26 @@ export default function BasicInfo() {
     setFormData({
       ...formData,
       projects: [...formData.projects, newProj],
+    });
+  };
+
+  const addNewAchivement = () => {
+    const newAchivement = {
+      achivement: "",
+    };
+    setFormData({
+      ...formData,
+      achivements: [...formData.achivements, newAchivement],
+    });
+  };
+
+  const addNewExtraCurricular = () => {
+    const newExtraCurricular = {
+      extraCurricular: "",
+    };
+    setFormData({
+      ...formData,
+      extraCurricular: [...formData.extraCurricular, newExtraCurricular],
     });
   };
 
@@ -173,6 +225,38 @@ export default function BasicInfo() {
               type="text"
               name="phone"
               value={formData.phone}
+              onChange={handleChange}
+            />
+          </div>
+        </div>
+
+        {/* profiles */}
+        <h1>profiles</h1>
+        <div>
+          <div>
+            <p>Github Profile: </p>
+            <input
+              type="text"
+              name="githubProfile"
+              value={formData.githubProfile}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <p>Linkedin Profile: </p>
+            <input
+              type="text"
+              name="linkedinProfile"
+              value={formData.linkedinProfile}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <p>Leetcode Profile: </p>
+            <input
+              type="text"
+              name="leetcodeProfile"
+              value={formData.leetcodeProfile}
               onChange={handleChange}
             />
           </div>
@@ -408,6 +492,38 @@ export default function BasicInfo() {
             />
           </div>
         </div>
+
+        {/* Achievements */}
+        <h1>Achievements</h1>
+        {formData.achivements.map((achivement, i) => (
+          <div key={i}>
+            <p>Achievements: </p>
+            <input
+              type="text"
+              name="achivement"
+              value={achivement.achivement}
+              onChange={(e) => handleAchivementChange(i, e)}
+            />
+          </div>
+        ))}
+        <button onClick={addNewAchivement}>Add New Achivement</button>
+
+        {/* Extra Curricular */}
+        <h1>Extra Curricular</h1>
+        {formData.extraCurricular.map((extraCurricular, i) => (
+          <div key={i}>
+            <p>Extra Curricular: </p>
+            <input
+              type="text"
+              name="extraCurricular"
+              value={extraCurricular.extraCurricular}
+              onChange={(e) => handleExtraCurricularChange(i, e)}
+            />
+          </div>
+        ))}
+        <button onClick={addNewExtraCurricular}>
+          Add New Extra Curricular
+        </button>
 
         <button type="submit" disabled={isGenerating}>
           {isGenerating ? "Generating..." : "Create Resume"}
