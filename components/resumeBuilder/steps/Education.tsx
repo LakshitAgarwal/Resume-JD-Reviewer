@@ -24,7 +24,7 @@ export default function Education({ formData, setFormData }: EducationProps) {
         </div>
         <h2 className="section-title gradient-text mb-4">Education</h2>
         <p className="section-subtitle text-gray-600 max-w-2xl mx-auto">
-          Tell us about your academic background and achievements
+          Tell us about your academic background
         </p>
       </div>
 
@@ -34,7 +34,7 @@ export default function Education({ formData, setFormData }: EducationProps) {
           <div className="flex items-center gap-4 mb-6">
             <div className="aesthetic-icon">🏫</div>
             <div className="form-group">
-              <h3 className="text-2xl font-bold gradient-text">
+              <h3 className="text-2xl mt-5 font-bold gradient-text">
                 College/University
               </h3>
               <p className="text-gray-600">Your higher education details</p>

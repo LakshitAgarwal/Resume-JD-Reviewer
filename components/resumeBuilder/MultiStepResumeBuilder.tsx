@@ -141,9 +141,6 @@ export default function MultiStepResumeBuilder() {
       <div className="max-w-5xl mx-auto px-6 py-12">
         {/* Header */}
         <div className="text-center mb-12">
-          <div className="aesthetic-icon mx-auto mb-6 animate-gentle-float">
-            ✨
-          </div>
           <h1 className="text-5xl font-bold gradient-text mb-4">
             Resume Builder
           </h1>

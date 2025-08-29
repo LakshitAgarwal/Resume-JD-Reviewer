@@ -22,12 +22,10 @@ export default function Experience({ formData, setFormData }: ExperienceProps) {
 
     if (checked && !showEncouragement) {
       setShowEncouragement(true);
-      toast.success(
-        "Great! We'll help you showcase your potential through projects, education, and skills.",
-        {
-          duration: 4000,
-        }
-      );
+      toast.success("No worries, let's make the best resume for you!", {
+        duration: 4000,
+        icon: "🤝",
+      });
     } else if (!checked) {
       setShowEncouragement(false);
     }
@@ -99,7 +97,7 @@ export default function Experience({ formData, setFormData }: ExperienceProps) {
             htmlFor="firstJobSeeker"
             className="text-sm font-medium text-gray-900 cursor-pointer"
           >
-            This is my first job application
+            I don&apos;t have any prior work experience
           </label>
         </div>
 
@@ -114,6 +112,7 @@ export default function Experience({ formData, setFormData }: ExperienceProps) {
         )}
       </div>
 
+      {!formData.isFirstJobSeeker && (
       <div className="space-y-6">
         {formData.experiences.map((exp, i) => (
           <div key={i} className="aesthetic-card p-8">
@@ -165,11 +164,7 @@ export default function Experience({ formData, setFormData }: ExperienceProps) {
                   value={exp.companyName}
                   onChange={(e) => handleExpChange(i, e)}
                   className="aesthetic-input"
-                  placeholder={
-                    formData.isFirstJobSeeker
-                      ? "e.g., University, NGO, Local Business"
-                      : "e.g., Google, Microsoft, Startup Inc."
-                  }
+                  placeholder="e.g., Google, Microsoft, Startup Inc."
                   required
                 />
               </div>
@@ -307,7 +302,7 @@ export default function Experience({ formData, setFormData }: ExperienceProps) {
               : "✨ Add Another Experience!"}
           </span>
         </button>
-      </div>
+      </div>)}
     </div>
   );
 }
