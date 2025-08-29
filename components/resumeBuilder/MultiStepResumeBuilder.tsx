@@ -16,7 +16,7 @@ const steps = [
   { id: 2, title: "Education", description: "Academic background" },
   { id: 3, title: "Experience", description: "Work history" },
   { id: 4, title: "Projects", description: "Your projects" },
-  { id: 5, title: "Skills & Others", description: "Skills & activities" },
+  { id: 5, title: "Skills", description: "Skills & achievements" },
   { id: 6, title: "Review", description: "Final review" },
 ];
 
@@ -66,6 +66,7 @@ export default function MultiStepResumeBuilder() {
     leetcodeProfile: "",
     achivements: [{ achivement: "" }],
     extraCurricular: [{ extraCurricular: "" }],
+    isFirstJobSeeker: false,
   });
 
   const validateStep = (step: number): boolean => {
@@ -133,31 +134,21 @@ export default function MultiStepResumeBuilder() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 py-12">
-      <div className="max-w-7xl mx-auto px-6">
+    <div
+      className="min-h-screen"
+      style={{ background: "var(--background-soft)" }}
+    >
+      <div className="max-w-5xl mx-auto px-6 py-12">
         {/* Header */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full mb-6 shadow-xl">
-            <svg
-              className="w-10 h-10 text-white"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-              />
-            </svg>
+          <div className="aesthetic-icon mx-auto mb-6 animate-gentle-float">
+            ✨
           </div>
-          <h1 className="text-5xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent mb-4">
+          <h1 className="text-5xl font-bold gradient-text mb-4">
             Resume Builder
           </h1>
-          <p className="text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
-            Craft your professional story with our intuitive, step-by-step
-            resume builder
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            Create your dream resume with our beautiful, step-by-step builder
           </p>
         </div>
 
@@ -169,36 +160,44 @@ export default function MultiStepResumeBuilder() {
         />
 
         {/* Main Content */}
-        <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl border border-white/20 p-10 mb-10">
-          {renderStep()}
-        </div>
+        <div className="aesthetic-card p-10 mb-10">{renderStep()}</div>
 
         {/* Navigation Controls */}
         {currentStep !== 6 && (
-          <div className="flex justify-between items-center max-w-5xl mx-auto">
+          <div className="flex justify-between items-center">
             <button
               onClick={prevStep}
               disabled={currentStep === 1}
-              className={`flex cursor-pointer items-center gap-3 px-8 py-4 rounded-2xl transition-all duration-300 ${
+              className={`flex items-center cursor-pointer gap-3  px-6 py-3 transition-all duration-300 ${
                 currentStep === 1
-                  ? "bg-slate-200 text-slate-400 cursor-not-allowed"
-                  : "bg-slate-700 text-white hover:bg-slate-700 hover:shadow-lg hover:-translate-y-0.5"
+                  ? "aesthetic-button-secondary opacity-50 cursor-not-allowed"
+                  : "aesthetic-button-secondary"
               }`}
             >
-              <ChevronLeft size={20} />
+              <ChevronLeft size={18} />
               Previous
             </button>
 
-            <div className="text-sm text-slate-500 bg-white/60 px-6 py-3 rounded-full backdrop-blur-sm">
+            <div
+              className="flex items-center gap-3 px-6 py-3 bg-white/80 backdrop-blur-sm border border-purple-200 rounded-full text-sm font-medium"
+              style={{ color: "var(--primary)" }}
+            >
+              <span
+                className="w-2 h-2 rounded-full"
+                style={{ background: "var(--gradient-primary)" }}
+              ></span>
               Step {currentStep} of {steps.length}
+              <span className="text-xs text-gray-500">
+                ({Math.round((currentStep / steps.length) * 100)}%)
+              </span>
             </div>
 
             <button
               onClick={nextStep}
-              className="flex cursor-pointer items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-2xl hover:from-blue-700 hover:to-indigo-700 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+              className="aesthetic-button cursor-pointer flex items-center gap-3 px-6 py-3"
             >
               Next
-              <ChevronRight size={20} />
+              <ChevronRight size={18} />
             </button>
           </div>
         )}

@@ -22,59 +22,31 @@ export default function PersonalInfo({
   return (
     <div className="space-y-8">
       <div className="text-center mb-10">
-        <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-100 to-indigo-100 rounded-2xl mb-4">
-          <svg
-            className="w-8 h-8 text-blue-600"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-            />
-          </svg>
+        <div className="aesthetic-icon mx-auto mb-6 animate-gentle-float">
+          ✨
         </div>
-        <h2 className="text-4xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent mb-3">
-          Personal Information
-        </h2>
-        <p className="text-lg text-slate-600 max-w-xl mx-auto">
-          Let&apos;s start with your basic details and professional profiles
+        <h2 className="section-title gradient-text mb-4">About You</h2>
+        <p className="section-subtitle text-gray-600">
+          Let's get to know the amazing person behind the resume! ⭐
         </p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Basic Information */}
-        <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 border border-blue-100/50 shadow-lg">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-xl flex items-center justify-center">
-              <svg
-                className="w-5 h-5 text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                />
-              </svg>
+        <div className="aesthetic-card p-8">
+          <div className="flex items-center gap-4 mb-6">
+            <div className="aesthetic-icon">📱</div>
+            <div>
+              <h3 className="text-2xl font-bold gradient-text">
+                Contact Magic
+              </h3>
+              <p className="text-gray-600">How people can reach you!</p>
             </div>
-            <h3 className="text-2xl font-bold text-slate-800">
-              Contact Details
-            </h3>
           </div>
 
           <div className="space-y-6">
-            <div className="group">
-              <label
-                htmlFor="name"
-                className="block text-sm font-semibold text-slate-700 mb-2 group-focus-within:text-blue-600 transition-colors"
-              >
+            <div className="form-group">
+              <label htmlFor="name" className="form-label">
                 Full Name *
               </label>
               <input
@@ -83,17 +55,14 @@ export default function PersonalInfo({
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                className="w-full px-4 py-3 bg-white/70 backdrop-blur-sm border border-slate-200 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:bg-white transition-all duration-300 placeholder-slate-400 text-slate-800"
-                placeholder="Enter your full name"
+                className="aesthetic-input"
+                placeholder="Your name here!"
                 required
               />
             </div>
 
-            <div className="group">
-              <label
-                htmlFor="email"
-                className="block text-sm font-semibold text-slate-700 mb-2 group-focus-within:text-blue-600 transition-colors"
-              >
+            <div className="form-group">
+              <label htmlFor="email" className="form-label">
                 Email Address *
               </label>
               <input
@@ -102,17 +71,14 @@ export default function PersonalInfo({
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full px-4 py-3 bg-white/70 backdrop-blur-sm border border-slate-200 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:bg-white transition-all duration-300 placeholder-slate-400 text-slate-800"
+                className="aesthetic-input"
                 placeholder="your.email@example.com"
                 required
               />
             </div>
 
-            <div className="group">
-              <label
-                htmlFor="phone"
-                className="block text-sm font-semibold text-slate-700 mb-2 group-focus-within:text-blue-600 transition-colors"
-              >
+            <div className="form-group">
+              <label htmlFor="phone" className="form-label">
                 Phone Number *
               </label>
               <input
@@ -121,8 +87,8 @@ export default function PersonalInfo({
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
-                className="w-full px-4 py-3 bg-white/70 backdrop-blur-sm border border-slate-200 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:bg-white transition-all duration-300 placeholder-slate-400 text-slate-800"
-                placeholder="+91 9514512842"
+                className="aesthetic-input"
+                placeholder="+91 9876543210"
                 required
               />
             </div>
@@ -130,34 +96,20 @@ export default function PersonalInfo({
         </div>
 
         {/* Profile Links */}
-        <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-2xl p-8 border border-emerald-100/50 shadow-lg">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center">
-              <svg
-                className="w-5 h-5 text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
-                />
-              </svg>
+        <div className="aesthetic-card p-8">
+          <div className="flex items-center gap-4 mb-6">
+            <div className="aesthetic-icon">🔗</div>
+            <div>
+              <h3 className="text-2xl font-bold gradient-text">
+                Professional Profiles
+              </h3>
+              <p className="text-gray-600">Show off your online presence</p>
             </div>
-            <h3 className="text-2xl font-bold text-slate-800">
-              Professional Profiles
-            </h3>
           </div>
 
           <div className="space-y-6">
-            <div className="group">
-              <label
-                htmlFor="linkedinProfile"
-                className="block text-sm font-semibold text-slate-700 mb-2 group-focus-within:text-emerald-600 transition-colors"
-              >
+            <div className="form-group">
+              <label htmlFor="linkedinProfile" className="form-label">
                 LinkedIn Profile
               </label>
               <input
@@ -166,16 +118,13 @@ export default function PersonalInfo({
                 name="linkedinProfile"
                 value={formData.linkedinProfile}
                 onChange={handleChange}
-                className="w-full px-4 py-3 bg-white/70 backdrop-blur-sm border border-slate-200 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 focus:bg-white transition-all duration-300 placeholder-slate-400 text-slate-800"
+                className="aesthetic-input"
                 placeholder="https://linkedin.com/in/yourprofile"
               />
             </div>
 
-            <div className="group">
-              <label
-                htmlFor="githubProfile"
-                className="block text-sm font-semibold text-slate-700 mb-2 group-focus-within:text-emerald-600 transition-colors"
-              >
+            <div className="form-group">
+              <label htmlFor="githubProfile" className="form-label">
                 GitHub Profile
               </label>
               <input
@@ -184,16 +133,13 @@ export default function PersonalInfo({
                 name="githubProfile"
                 value={formData.githubProfile}
                 onChange={handleChange}
-                className="w-full px-4 py-3 bg-white/70 backdrop-blur-sm border border-slate-200 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 focus:bg-white transition-all duration-300 placeholder-slate-400 text-slate-800"
+                className="aesthetic-input"
                 placeholder="https://github.com/yourusername"
               />
             </div>
 
-            <div className="group">
-              <label
-                htmlFor="leetcodeProfile"
-                className="block text-sm font-semibold text-slate-700 mb-2 group-focus-within:text-emerald-600 transition-colors"
-              >
+            <div className="form-group">
+              <label htmlFor="leetcodeProfile" className="form-label">
                 LeetCode Profile
               </label>
               <input
@@ -202,7 +148,7 @@ export default function PersonalInfo({
                 name="leetcodeProfile"
                 value={formData.leetcodeProfile}
                 onChange={handleChange}
-                className="w-full px-4 py-3 bg-white/70 backdrop-blur-sm border border-slate-200 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 focus:bg-white transition-all duration-300 placeholder-slate-400 text-slate-800"
+                className="aesthetic-input"
                 placeholder="https://leetcode.com/yourusername"
               />
             </div>

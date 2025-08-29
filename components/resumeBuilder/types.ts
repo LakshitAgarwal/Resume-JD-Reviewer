@@ -50,6 +50,7 @@ export interface ResumeFormData {
   leetcodeProfile: string;
   achivements: Achievement[];
   extraCurricular: ExtraCurricular[];
+  isFirstJobSeeker: boolean;
 }
 
 export interface StepProps {

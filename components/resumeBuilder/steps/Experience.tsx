@@ -3,6 +3,8 @@
 
 import { ResumeFormData } from "@/components/resumeBuilder/types";
 import { Plus, Trash2 } from "lucide-react";
+import { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 interface ExperienceProps {
   formData: ResumeFormData;
@@ -10,6 +12,26 @@ interface ExperienceProps {
 }
 
 export default function Experience({ formData, setFormData }: ExperienceProps) {
+  const [showEncouragement, setShowEncouragement] = useState(false);
+
+  const handleFirstJobSeekerChange = (checked: boolean) => {
+    setFormData({
+      ...formData,
+      isFirstJobSeeker: checked,
+    });
+
+    if (checked && !showEncouragement) {
+      setShowEncouragement(true);
+      toast.success(
+        "Great! We'll help you showcase your potential through projects, education, and skills.",
+        {
+          duration: 4000,
+        }
+      );
+    } else if (!checked) {
+      setShowEncouragement(false);
+    }
+  };
   const handleExpChange = (
     i: number,
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -51,76 +73,90 @@ export default function Experience({ formData, setFormData }: ExperienceProps) {
 
   return (
     <div className="space-y-6">
-      <div className="text-center mb-12">
-        <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-purple-100 to-violet-100 rounded-2xl mb-4">
-          <svg
-            className="w-8 h-8 text-purple-600"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-            />
-          </svg>
+      <Toaster position="top-center" />
+
+      <div className="mb-8">
+        <div className="aesthetic-icon mx-auto mb-6 animate-gentle-float">
+          💼
         </div>
-        <h2 className="text-4xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent mb-3">
+        <h2 className="section-title gradient-text text-center mb-4">
           Work Experience
         </h2>
-        <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-          Share your professional experience and achievements
+        <p className="section-subtitle text-gray-600 text-center mb-8">
+          Share your professional journey and achievements ✨
         </p>
+
+        {/* First Job Seeker Checkbox */}
+        <div className="flex items-center justify-center gap-3 p-4 bg-blue-50 border border-blue-200 rounded-lg mb-6">
+          <input
+            type="checkbox"
+            id="firstJobSeeker"
+            checked={formData.isFirstJobSeeker}
+            onChange={(e) => handleFirstJobSeekerChange(e.target.checked)}
+            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
+          />
+          <label
+            htmlFor="firstJobSeeker"
+            className="text-sm font-medium text-gray-900 cursor-pointer"
+          >
+            This is my first job application
+          </label>
+        </div>
+
+        {formData.isFirstJobSeeker && (
+          <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
+            <p className="text-sm text-gray-700">
+              <strong>Tip:</strong> Focus on internships, volunteer work,
+              personal projects, or any leadership roles you've had. Every
+              journey starts somewhere!
+            </p>
+          </div>
+        )}
       </div>
 
       <div className="space-y-6">
         {formData.experiences.map((exp, i) => (
-          <div
-            key={i}
-            className="bg-gradient-to-br from-purple-50 to-violet-50 rounded-3xl p-8 border border-purple-100/50 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1"
-          >
-            <div className="flex justify-between items-center mb-8">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-violet-500 rounded-2xl flex items-center justify-center shadow-lg">
-                  <svg
-                    className="w-6 h-6 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                    />
-                  </svg>
+          <div key={i} className="aesthetic-card p-8">
+            <div className="flex justify-between items-center mb-6">
+              <div className="flex items-center gap-3">
+                <div
+                  className="aesthetic-icon"
+                  style={{ width: "48px", height: "48px", fontSize: "20px" }}
+                >
+                  💼
                 </div>
-                <h3 className="text-2xl font-bold text-slate-800">
-                  Experience {i + 1}
-                </h3>
+                <div>
+                  <h3 className="text-xl font-bold gradient-text">
+                    {formData.isFirstJobSeeker
+                      ? `Experience ${i + 1}`
+                      : `Experience ${i + 1}`}
+                  </h3>
+                  <p className="text-sm text-gray-600">
+                    {formData.isFirstJobSeeker
+                      ? "Every experience counts! ✨"
+                      : "Share your professional story"}
+                  </p>
+                </div>
               </div>
               {formData.experiences.length > 1 && (
                 <button
                   type="button"
                   onClick={() => removeExperience(i)}
-                  className="text-red-500 hover:text-red-700 p-3 hover:bg-red-50 rounded-xl transition-all duration-300 hover:scale-105"
+                  className="p-2 text-red-500 hover:text-red-700 hover:bg-red-50 rounded-lg transition-all duration-200"
                   title="Remove this experience"
                 >
-                  <Trash2 size={20} />
+                  <Trash2 size={16} />
                 </button>
               )}
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label
-                  htmlFor={`companyName-${i}`}
-                  className="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  Company Name *
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="form-group">
+                <label htmlFor={`companyName-${i}`} className="form-label">
+                  {formData.isFirstJobSeeker
+                    ? "Organization/Company"
+                    : "Company Name"}{" "}
+                  *
                 </label>
                 <input
                   type="text"
@@ -128,18 +164,22 @@ export default function Experience({ formData, setFormData }: ExperienceProps) {
                   name="companyName"
                   value={exp.companyName}
                   onChange={(e) => handleExpChange(i, e)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
-                  placeholder="Google, Microsoft, etc."
+                  className="aesthetic-input"
+                  placeholder={
+                    formData.isFirstJobSeeker
+                      ? "e.g., University, NGO, Local Business"
+                      : "e.g., Google, Microsoft, Startup Inc."
+                  }
                   required
                 />
               </div>
 
-              <div>
-                <label
-                  htmlFor={`position-${i}`}
-                  className="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  Job Title/Position *
+              <div className="form-group">
+                <label htmlFor={`position-${i}`} className="form-label">
+                  {formData.isFirstJobSeeker
+                    ? "Role/Position"
+                    : "Job Title/Position"}{" "}
+                  *
                 </label>
                 <input
                   type="text"
@@ -147,17 +187,18 @@ export default function Experience({ formData, setFormData }: ExperienceProps) {
                   name="position"
                   value={exp.position}
                   onChange={(e) => handleExpChange(i, e)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
-                  placeholder="Software Engineer, Product Manager, etc."
+                  className="aesthetic-input"
+                  placeholder={
+                    formData.isFirstJobSeeker
+                      ? "e.g., Intern, Volunteer, Team Leader"
+                      : "e.g., Software Engineer, Product Manager"
+                  }
                   required
                 />
               </div>
 
-              <div>
-                <label
-                  htmlFor={`location-${i}`}
-                  className="block text-sm font-medium text-gray-700 mb-1"
-                >
+              <div className="form-group">
+                <label htmlFor={`location-${i}`} className="form-label">
                   Location
                 </label>
                 <input
@@ -166,17 +207,14 @@ export default function Experience({ formData, setFormData }: ExperienceProps) {
                   name="location"
                   value={exp.location}
                   onChange={(e) => handleExpChange(i, e)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
-                  placeholder="Hyderabad, Telangana"
+                  className="aesthetic-input"
+                  placeholder="e.g., San Francisco, CA"
                 />
               </div>
 
-              <div>
-                <label
-                  htmlFor={`technologiesUsed-${i}`}
-                  className="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  Technologies Used
+              <div className="form-group">
+                <label htmlFor={`technologiesUsed-${i}`} className="form-label">
+                  Technologies/Skills Used
                 </label>
                 <input
                   type="text"
@@ -184,16 +222,17 @@ export default function Experience({ formData, setFormData }: ExperienceProps) {
                   name="technologiesUsed"
                   value={exp.technologiesUsed}
                   onChange={(e) => handleExpChange(i, e)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
-                  placeholder="React, Node.js, Python, AWS"
+                  className="aesthetic-input"
+                  placeholder={
+                    formData.isFirstJobSeeker
+                      ? "Python, Excel, Communication, etc."
+                      : "React, Node.js, Python, AWS"
+                  }
                 />
               </div>
 
-              <div>
-                <label
-                  htmlFor={`jobStartDate-${i}`}
-                  className="block text-sm font-medium text-gray-700 mb-1"
-                >
+              <div className="form-group">
+                <label htmlFor={`jobStartDate-${i}`} className="form-label">
                   Start Date
                 </label>
                 <input
@@ -202,15 +241,12 @@ export default function Experience({ formData, setFormData }: ExperienceProps) {
                   name="jobStartDate"
                   value={exp.jobStartDate}
                   onChange={(e) => handleExpChange(i, e)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                  className="aesthetic-input"
                 />
               </div>
 
-              <div>
-                <label
-                  htmlFor={`jobEndDate-${i}`}
-                  className="block text-sm font-medium text-gray-700 mb-1"
-                >
+              <div className="form-group">
+                <label htmlFor={`jobEndDate-${i}`} className="form-label">
                   End Date
                 </label>
                 <input
@@ -219,17 +255,16 @@ export default function Experience({ formData, setFormData }: ExperienceProps) {
                   name="jobEndDate"
                   value={exp.jobEndDate}
                   onChange={(e) => handleExpChange(i, e)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                  className="aesthetic-input"
                 />
               </div>
             </div>
 
-            <div className="mt-4">
-              <label
-                htmlFor={`description-${i}`}
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
-                Job Description & Achievements
+            <div className="form-group">
+              <label htmlFor={`description-${i}`} className="form-label">
+                {formData.isFirstJobSeeker
+                  ? "Tell Your Story!"
+                  : "Description & Achievements"}
               </label>
               <textarea
                 id={`description-${i}`}
@@ -237,8 +272,12 @@ export default function Experience({ formData, setFormData }: ExperienceProps) {
                 value={exp.description}
                 onChange={(e) => handleExpChange(i, e)}
                 rows={4}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
-                placeholder="Describe your responsibilities, achievements, and impact. Include metrics where possible (e.g., 'Improved performance by 30%', 'Led a team of 5 developers')."
+                className="aesthetic-input resize-none"
+                placeholder={
+                  formData.isFirstJobSeeker
+                    ? "What did you learn? What skills did you develop? What impact did you make? Even small contributions matter! (e.g., 'Helped organize events for 50+ students', 'Learned teamwork and communication skills')"
+                    : "Describe your responsibilities, achievements, and impact. Include metrics where possible (e.g., 'Improved performance by 30%', 'Led a team of 5 developers')."
+                }
               />
             </div>
           </div>
@@ -247,12 +286,26 @@ export default function Experience({ formData, setFormData }: ExperienceProps) {
         <button
           type="button"
           onClick={addNewExperience}
-          className="w-full flex items-center justify-center gap-3 py-6 px-6 border-2 border-dashed border-purple-300 text-purple-600 hover:border-purple-400 hover:text-purple-700 rounded-2xl transition-all duration-300 hover:bg-purple-50 group"
+          className="w-full flex items-center justify-center gap-3 py-6 px-6 border-2 border-dashed rounded-2xl transition-all duration-300 hover:scale-105 group"
+          style={{
+            borderColor: "#0a9396",
+            color: "#005f73",
+            background: "rgba(148, 210, 189, 0.1)",
+          }}
         >
-          <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-violet-500 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+          <div
+            className="w-12 h-12 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform animate-bounce-cute"
+            style={{
+              background: "linear-gradient(135deg, #0a9396, #94d2bd)",
+            }}
+          >
             <Plus size={24} className="text-white" />
           </div>
-          <span className="text-lg font-medium">Add Another Experience</span>
+          <span className="text-lg font-bold">
+            {formData.isFirstJobSeeker
+              ? "🌟 Add Another Adventure!"
+              : "✨ Add Another Experience!"}
+          </span>
         </button>
       </div>
     </div>

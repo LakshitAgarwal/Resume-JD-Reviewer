@@ -19,7 +19,8 @@
     "pdf2json": "^3.2.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "react-github-btn": "^1.4.0"
+    "react-github-btn": "^1.4.0",
+    "react-hot-toast": "^2.6.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

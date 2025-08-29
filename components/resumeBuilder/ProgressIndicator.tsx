@@ -20,42 +20,59 @@ export default function ProgressIndicator({
   goToStep,
 }: ProgressIndicatorProps) {
   return (
-    <div className="w-full max-w-6xl mx-auto mb-12">
+    <div className="w-full mb-8">
       <div className="relative">
         {/* Background Progress Line */}
-        <div className="absolute top-6 left-0 right-0 h-1 bg-slate-200 rounded-full hidden md:block">
+        <div className="absolute top-5 left-0 right-0 h-1 bg-gray-200 rounded-full hidden md:block">
           <div
-            className="h-full bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full transition-all duration-700 ease-out shadow-lg"
+            className="h-full rounded-full transition-all duration-700 ease-out"
             style={{
+              background: "var(--gradient-primary)",
               width: `${((currentStep - 1) / (steps.length - 1)) * 100}%`,
+              boxShadow: "0 2px 8px rgba(139, 92, 246, 0.3)",
             }}
           />
         </div>
 
         {/* Steps */}
-        <div className="grid grid-cols-3 md:grid-cols-6 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
           {steps.map((step) => (
-            <div
-              key={step.id}
-              className="flex flex-col items-center relative group"
-            >
+            <div key={step.id} className="flex flex-col items-center relative">
               {/* Step Circle */}
               <div className="relative z-10">
                 {currentStep > step.id ? (
                   <div
-                    className={`w-12 h-12 bg-gradient-to-r from-emerald-500 to-green-500 rounded-full flex items-center justify-center shadow-lg transform transition-all duration-300 group-hover:scale-110 ${
-                      goToStep ? "cursor-pointer" : ""
+                    className={`w-10 h-10 rounded-full flex items-center justify-center text-white transition-all duration-300 ${
+                      goToStep ? "cursor-pointer hover:scale-110" : ""
                     }`}
+                    style={{
+                      background: "var(--gradient-primary)",
+                      boxShadow: "0 4px 12px rgba(139, 92, 246, 0.3)",
+                    }}
                     onClick={() => goToStep?.(step.id)}
                   >
-                    <CheckCircle className="w-6 h-6 text-white" />
+                    <CheckCircle className="w-5 h-5" />
                   </div>
                 ) : currentStep === step.id ? (
-                  <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-xl ring-4 ring-blue-100 transform transition-all duration-300 group-hover:scale-110 animate-pulse">
+                  <div
+                    className="w-10 h-10 rounded-full flex items-center justify-center text-white font-semibold text-sm animate-subtle-bounce"
+                    style={{
+                      background: "var(--gradient-primary)",
+                      boxShadow: "0 6px 16px rgba(139, 92, 246, 0.4)",
+                      border: "2px solid white",
+                    }}
+                  >
                     {step.id}
                   </div>
                 ) : (
-                  <div className="w-12 h-12 bg-slate-200 rounded-full flex items-center justify-center text-slate-400 font-bold text-lg border-2 border-slate-300 transform transition-all duration-300 group-hover:scale-105">
+                  <div
+                    className="w-10 h-10 rounded-full flex items-center justify-center font-medium text-sm transition-all duration-300"
+                    style={{
+                      background: "var(--background-soft)",
+                      border: "2px solid var(--border)",
+                      color: "var(--neutral)",
+                    }}
+                  >
                     {step.id}
                   </div>
                 )}
@@ -64,25 +81,20 @@ export default function ProgressIndicator({
               {/* Step Label */}
               <div className="mt-3 text-center">
                 <p
-                  className={`text-sm md:text-base font-semibold transition-colors duration-300 ${
-                    currentStep >= step.id ? "text-slate-800" : "text-slate-400"
+                  className={`text-sm font-semibold transition-colors duration-300 ${
+                    currentStep >= step.id ? "gradient-text" : "text-gray-400"
                   }`}
                 >
                   {step.title}
                 </p>
                 <p
-                  className={`text-xs hidden sm:block mt-1 transition-colors duration-300 ${
-                    currentStep >= step.id ? "text-slate-600" : "text-slate-400"
+                  className={`text-xs mt-1 transition-colors duration-200 hidden md:block ${
+                    currentStep >= step.id ? "text-gray-600" : "text-gray-400"
                   }`}
                 >
                   {step.description}
                 </p>
               </div>
-
-              {/* Hover Effect */}
-              {currentStep === step.id && (
-                <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-blue-500 rounded-full animate-bounce" />
-              )}
             </div>
           ))}
         </div>

@@ -3,6 +3,37 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Warm Beige-Brown Palette (react-hot-toast inspired) */
+  --primary: #92400e; /* Warm brown */
+  --primary-light: #d97706; /* Lighter brown */
+  --primary-dark: #78350f; /* Dark brown */
+
+  --secondary: #b45309; /* Orange-brown */
+  --secondary-light: #f59e0b; /* Warm orange */
+  --secondary-dark: #92400e; /* Deep brown */
+
+  --accent: #dc2626; /* Warm red accent */
+  --accent-light: #ef4444; /* Light red */
+
+  --neutral: #6b7280; /* Warm gray */
+  --neutral-light: #9ca3af; /* Light gray */
+  --neutral-dark: #374151; /* Dark gray */
+
+  --background-soft: #fef7ed; /* Warm beige */
+  --background-card: #ffffff;
+  --border: #f3e8d8; /* Warm border */
+  --success: #059669;
+  --error: #dc2626;
+
+  /* Warm gradients */
+  --gradient-primary: linear-gradient(
+    135deg,
+    var(--primary),
+    var(--secondary-light)
+  );
+  --gradient-soft: linear-gradient(135deg, #fef7ed, #fef3e2);
+  --gradient-card: linear-gradient(145deg, #ffffff, #fefcf9);
 }
 
 @theme inline {
@@ -22,7 +53,10 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
 }
 
 /* Custom animations */
@@ -58,6 +92,26 @@ body {
   }
 }
 
+@keyframes subtle-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes gentle-float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
 .animate-fadeIn {
   animation: fadeIn 0.6s ease-out;
 }
@@ -68,6 +122,14 @@ body {
 
 .animate-pulse-custom {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-subtle-bounce {
+  animation: subtle-bounce 2s ease-in-out infinite;
+}
+
+.animate-gentle-float {
+  animation: gentle-float 4s ease-in-out infinite;
 }
 
 /* Smooth scrollbar */
@@ -98,4 +160,117 @@ textarea {
 input::placeholder,
 textarea::placeholder {
   color: rgb(148 163 184) !important; /* text-slate-400 */
+}
+
+/* Clean warm aesthetic classes */
+.aesthetic-card {
+  background: white;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 8px rgba(146, 64, 14, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+  transition: all 0.2s ease;
+}
+
+.aesthetic-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(146, 64, 14, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.aesthetic-button {
+  background: var(--primary);
+  border-radius: 10px;
+  border: none;
+  color: white;
+  font-weight: 600;
+  padding: 12px 24px;
+  transition: all 0.2s ease;
+  font-size: 14px;
+}
+
+.aesthetic-button:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+}
+
+.aesthetic-button-secondary {
+  background: var(--background-soft);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  color: var(--primary);
+  font-weight: 500;
+  padding: 12px 24px;
+  transition: all 0.2s ease;
+  font-size: 14px;
+}
+
+.aesthetic-button-secondary:hover {
+  background: #fef3e2;
+  border-color: var(--primary);
+}
+
+.aesthetic-input {
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 18px;
+  transition: all 0.2s ease;
+  color: var(--neutral-dark) !important;
+  font-size: 16px;
+  width: 100%;
+  font-family: inherit;
+}
+
+.aesthetic-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(146, 64, 14, 0.1);
+  outline: none;
+}
+
+.aesthetic-input::placeholder {
+  color: var(--neutral-light) !important;
+  font-size: 15px;
+}
+
+.aesthetic-icon {
+  width: 64px;
+  height: 64px;
+  background: var(--background-soft);
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  font-size: 28px;
+  border: 1px solid var(--border);
+}
+
+.gradient-text {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.form-label {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--neutral-dark);
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+
+.form-group {
+  margin-bottom: 24px;
+}
+
+.section-title {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.section-subtitle {
+  font-size: 18px;
+  line-height: 1.5;
 }
