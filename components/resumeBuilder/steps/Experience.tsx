@@ -107,7 +107,7 @@ export default function Experience({ formData, setFormData }: ExperienceProps) {
           <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
             <p className="text-sm text-gray-700">
               <strong>Tip:</strong> Focus on internships, volunteer work,
-              personal projects, or any leadership roles you've had. Every
+              personal projects, or any leadership roles you have had. Every
               journey starts somewhere!
             </p>
           </div>
