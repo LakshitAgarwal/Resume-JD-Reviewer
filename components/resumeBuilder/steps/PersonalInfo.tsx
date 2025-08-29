@@ -27,7 +27,7 @@ export default function PersonalInfo({
         </div>
         <h2 className="section-title gradient-text mb-4">About You</h2>
         <p className="section-subtitle text-gray-600">
-          Let's get to know the amazing person behind the resume! ⭐
+          Let us get to know the amazing person behind the resume! ⭐
         </p>
       </div>
 
