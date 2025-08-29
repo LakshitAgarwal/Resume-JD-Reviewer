@@ -76,6 +76,10 @@ export default function MultiStepResumeBuilder() {
       case 2: // Education
         return !!(formData.collegeName && formData.degree);
       case 3: // Experience
+        // If user is a first job seeker, skip experience validation
+        if (formData.isFirstJobSeeker) {
+          return true;
+        }
         return formData.experiences.every(
           (exp) => exp.companyName && exp.position
         );

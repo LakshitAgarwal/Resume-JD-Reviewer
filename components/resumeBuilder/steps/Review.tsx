@@ -56,59 +56,48 @@ export default function Review({ formData, onBack }: ReviewProps) {
       </div>
 
       {/* Personal Information Review */}
-      <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-3xl p-8 border border-blue-100/50 shadow-xl">
+      <div className="aesthetic-card p-8">
         <div className="flex items-center gap-4 mb-6">
-          <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-2xl flex items-center justify-center shadow-lg">
-            <svg
-              className="w-6 h-6 text-white"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-              />
-            </svg>
+          <div className="aesthetic-icon">👤</div>
+          <div>
+            <h3 className="text-2xl font-bold gradient-text">
+              Personal Information
+            </h3>
+            <p className="text-gray-600">Your contact and profile details</p>
           </div>
-          <h3 className="text-2xl font-bold text-slate-800">
-            Personal Information
-          </h3>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-          <div className="bg-white/60 backdrop-blur-sm rounded-xl p-4 border border-blue-200/50">
+          <div className="bg-white/60 backdrop-blur-sm rounded-xl p-4 border border-orange-200/50">
             <strong className="text-slate-700">Name:</strong>{" "}
             <span className="text-slate-800">
               {getSectionValue(formData.name)}
             </span>
           </div>
-          <div className="bg-white/60 backdrop-blur-sm rounded-xl p-4 border border-blue-200/50">
+          <div className="bg-white/60 backdrop-blur-sm rounded-xl p-4 border border-orange-200/50">
             <strong className="text-slate-700">Email:</strong>{" "}
             <span className="text-slate-800">
               {getSectionValue(formData.email)}
             </span>
           </div>
-          <div className="bg-white/60 backdrop-blur-sm rounded-xl p-4 border border-blue-200/50">
+          <div className="bg-white/60 backdrop-blur-sm rounded-xl p-4 border border-orange-200/50">
             <strong className="text-slate-700">Phone:</strong>{" "}
             <span className="text-slate-800">
               {getSectionValue(formData.phone)}
             </span>
           </div>
-          <div className="bg-white/60 backdrop-blur-sm rounded-xl p-4 border border-blue-200/50">
+          <div className="bg-white/60 backdrop-blur-sm rounded-xl p-4 border border-orange-200/50">
             <strong className="text-slate-700">LinkedIn:</strong>{" "}
             <span className="text-slate-800">
               {getSectionValue(formData.linkedinProfile)}
             </span>
           </div>
-          <div className="bg-white/60 backdrop-blur-sm rounded-xl p-4 border border-blue-200/50">
+          <div className="bg-white/60 backdrop-blur-sm rounded-xl p-4 border border-orange-200/50">
             <strong className="text-slate-700">GitHub:</strong>{" "}
             <span className="text-slate-800">
               {getSectionValue(formData.githubProfile)}
             </span>
           </div>
-          <div className="bg-white/60 backdrop-blur-sm rounded-xl p-4 border border-blue-200/50">
+          <div className="bg-white/60 backdrop-blur-sm rounded-xl p-4 border border-orange-200/50">
             <strong className="text-slate-700">LeetCode:</strong>{" "}
             <span className="text-slate-800">
               {getSectionValue(formData.leetcodeProfile)}
@@ -443,14 +432,14 @@ export default function Review({ formData, onBack }: ReviewProps) {
       <div className="flex gap-6 justify-center">
         <button
           onClick={onBack}
-          className="px-8 py-4 border-2 border-slate-300 text-slate-700 rounded-2xl hover:bg-slate-50 hover:border-slate-400 transition-all duration-300 font-medium"
+          className="aesthetic-button-secondary px-8 py-4 cursor-pointer"
         >
           Back to Edit
         </button>
         <button
           onClick={handleSubmit}
           disabled={isGenerating}
-          className="px-10 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-2xl hover:from-blue-700 hover:to-indigo-700 disabled:from-blue-400 disabled:to-indigo-400 transition-all duration-300 font-medium shadow-lg hover:shadow-xl disabled:shadow-none"
+          className="aesthetic-button px-10 py-4 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isGenerating ? "Generating Resume..." : "Generate Resume"}
         </button>

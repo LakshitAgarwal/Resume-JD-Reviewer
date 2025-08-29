@@ -1,6 +1,7 @@
 "use client";
 
 import { ResumeFormData } from "@/components/resumeBuilder/types";
+import { User } from "lucide-react";
 
 interface PersonalInfoProps {
   formData: ResumeFormData;
@@ -23,7 +24,7 @@ export default function PersonalInfo({
     <div className="space-y-8">
       <div className="text-center mb-10">
         <div className="aesthetic-icon mx-auto mb-6 animate-gentle-float">
-          ✨
+          <User />
         </div>
         <h2 className="section-title gradient-text mb-4">About You</h2>
         <p className="section-subtitle text-gray-600">

@@ -85,7 +85,7 @@ export default function Projects({ formData, setFormData }: ProjectsProps) {
                 <button
                   type="button"
                   onClick={() => removeProject(i)}
-                  className="text-red-500 hover:text-red-700 p-3 hover:bg-red-50 rounded-xl transition-all duration-300 hover:scale-105"
+                  className="text-red-500 cursor-pointer hover:text-red-700 p-3 hover:bg-red-50 rounded-xl transition-all duration-300 hover:scale-105"
                   title="Remove this project"
                 >
                   <Trash2 size={20} />
@@ -199,7 +199,7 @@ export default function Projects({ formData, setFormData }: ProjectsProps) {
             <div className="mt-6 group">
               <label
                 htmlFor={`projectDescription-${i}`}
-                className="block text-sm font-semibold text-slate-700 mb-3 group-focus-within:text-indigo-600 transition-colors"
+                className="block text-sm font-semibold text-slate-700 mb-3 transition-colors"
               >
                 Project Description & Impact *
               </label>
@@ -220,7 +220,7 @@ export default function Projects({ formData, setFormData }: ProjectsProps) {
         <button
           type="button"
           onClick={addNewProject}
-          className="w-full flex items-center justify-center gap-3 py-6 px-6 border-2 border-dashed border-indigo-300 text-indigo-600 hover:border-indigo-400 hover:text-indigo-700 rounded-2xl transition-all duration-300 hover:bg-indigo-50 group"
+          className="w-full cursor-pointer flex items-center justify-center gap-3 py-6 px-6 border-2 border-dashed border-indigo-300 text-indigo-600 hover:border-indigo-400 hover:text-indigo-700 rounded-2xl transition-all duration-300 hover:bg-indigo-50 group"
         >
           <div className="w-10 h-10 bg-gradient-to-r from-indigo-500 to-blue-500 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
             <Plus size={24} className="text-white" />

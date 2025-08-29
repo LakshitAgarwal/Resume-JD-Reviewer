@@ -226,7 +226,7 @@ export default function SkillsAndOthers({
                   <button
                     type="button"
                     onClick={() => removeAchievement(i)}
-                    className="text-rose-500 hover:text-rose-700 p-3 hover:bg-rose-50 rounded-xl transition-all duration-300 group-hover:scale-105"
+                    className="text-rose-500 cursor-pointer hover:text-rose-700 p-3 hover:bg-rose-50 rounded-xl transition-all duration-300 group-hover:scale-105"
                     title="Remove this achievement"
                   >
                     <Trash2 size={18} />
@@ -238,9 +238,9 @@ export default function SkillsAndOthers({
           <button
             type="button"
             onClick={addNewAchievement}
-            className="flex items-center gap-3 text-rose-600 hover:text-rose-700 text-sm font-medium hover:bg-rose-50 px-4 py-3 rounded-xl transition-all duration-300 group"
+            className="flex items-center gap-3 cursor-pointer text-rose-600 hover:text-rose-700 text-sm font-medium hover:bg-rose-50 px-4 py-3 rounded-xl transition-all duration-300 group"
           >
-            <div className="w-8 h-8 bg-gradient-to-r from-rose-500 to-pink-500 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+            <div className="w-8 h-8  bg-gradient-to-r from-rose-500 to-pink-500 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
               <Plus size={16} className="text-white" />
             </div>
             Add Another Achievement
@@ -298,7 +298,7 @@ export default function SkillsAndOthers({
                   <button
                     type="button"
                     onClick={() => removeExtraCurricular(i)}
-                    className="text-cyan-500 hover:text-cyan-700 p-3 hover:bg-cyan-50 rounded-xl transition-all duration-300 group-hover:scale-105"
+                    className="text-cyan-500 cursor-pointer hover:text-cyan-700 p-3 hover:bg-cyan-50 rounded-xl transition-all duration-300 group-hover:scale-105"
                     title="Remove this activity"
                   >
                     <Trash2 size={18} />
@@ -310,9 +310,9 @@ export default function SkillsAndOthers({
           <button
             type="button"
             onClick={addNewExtraCurricular}
-            className="flex items-center gap-3 text-cyan-600 hover:text-cyan-700 text-sm font-medium hover:bg-cyan-50 px-4 py-3 rounded-xl transition-all duration-300 group"
+            className="flex items-center gap-3 cursor-pointer text-cyan-600 hover:text-cyan-700 text-sm font-medium hover:bg-cyan-50 px-4 py-3 rounded-xl transition-all duration-300 group"
           >
-            <div className="w-8 h-8 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+            <div className="w-8 h-8 bg-gradient-to-r  from-cyan-500 to-blue-500 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
               <Plus size={16} className="text-white" />
             </div>
             Add Another Activity
