@@ -3,6 +3,7 @@
 import { ResumeFormData } from "@/components/resumeBuilder/types";
 import { useState } from "react";
 import axios from "axios";
+import PreviewButton from "@/components/layout/PreviewButton";
 
 interface ReviewProps {
   formData: ResumeFormData;
@@ -513,6 +514,7 @@ export default function Review({ formData, onBack }: ReviewProps) {
             Copy this LaTeX code and paste it into an online LaTeX compiler like
             Overleaf to generate your PDF resume.
           </p>
+          <PreviewButton latexCode={latexCode} />
         </div>
       )}
     </div>
